@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Totem Inteligente</title>
+
+    <!-- Atualiza a cada 2 segundos -->
+    <meta http-equiv="refresh" content="2">
+
+    <!-- Fonte e estilo -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            width: 200px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .status {
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .normal { color: #22c55e; }
+        .alerta { color: #ef4444; }
+        .presenca { color: #facc15; }
+    </style>
+</head>
+<body>
+
+    <h1>📡 Totem Inteligente</h1>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>🌡️ Temperatura</h2>
+            <p>{{ temperatura }} °C</p>
+        </div>
+
+        <div class="card">
+            <h2>💧 Umidade</h2>
+            <p>{{ umidade }} %</p>
+        </div>
+
+        <div class="card">
+            <h2>🚶 Movimento</h2>
+            <p>
+                {% if movimento %}
+                    Detectado
+                {% else %}
+                    Não detectado
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>💡 LED</h2>
+            <p>
+                {% if led %}
+                    Ligado
+                {% else %}
+                    Desligado
+                {% endif %}
+            </p>
+        </div>
+
+    </div>
+
+    <div class="status
+        {% if 'Alerta' in estado %}alerta
+        {% elif 'Presença' in estado %}presenca
+        {% else %}normal
+        {% endif %}
+    ">
+        {{ estado }}
+    </div>
+
+</body>
+</html>
